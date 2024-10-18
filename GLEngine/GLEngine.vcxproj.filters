@@ -81,9 +81,6 @@
     <ClCompile Include="Systems\UpdateSystem\UpdateSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Components\EntityComponent\EntityComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Components\ComponentManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1275,9 +1272,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Systems\UpdateSystem\UpdateSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Components\EntityComponent\EntityComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Components\ComponentManager.h">

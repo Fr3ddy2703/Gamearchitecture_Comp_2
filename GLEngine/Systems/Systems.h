@@ -4,7 +4,6 @@
 class Systems
 {
 public:
-	virtual void Update() = 0;
 	Systems() = default;
 };
 

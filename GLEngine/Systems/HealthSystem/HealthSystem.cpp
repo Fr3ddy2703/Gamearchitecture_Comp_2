@@ -1,35 +1,24 @@
 #include "pch.h"
 #include "HealthSystem.h"
+#include "../../Components/HealthComponents/HealthComponent.h"
 
-#include "../../Actor/Actor.h"
-
-
-//HealthSystem::HealthSystem(ComponentManager<HealthComponent> HealthManager)
-//{
-//	this->HealthManager = HealthManager;
-//}
-//
-//int HealthSystem::GetHealth(int _entityID)
-//{
-//	return HealthManager.getComponent(_entityID).mCurrentHealth;
-//}
-
-//int HealthSystem::GetHealth(int _entityID)
-//{
-//	return _entityID;
-//}
-
-void HealthSystem::takeDamage(int _damageDoer, int _damageTaker, int _damage)
+void HealthSystem::setHealth(int _entityID, int _health, int _maxhealth)
 {
-	//HealthManager.getComponent(_damageTaker).mCurrentHealth -= _damage;
+	HealthManager.getComponent(_entityID).mCurrentHealth = _health;
+	HealthManager.getComponent(_entityID).mMaxHealth = _maxhealth ;
 }
 
-//int HealthSystem::GetHealth(std::shared_ptr<Player> actorToGetHealthFrom)
-//{
-//	return actorToGetHealthFrom->hp->mCurrentHealth;
-//}
+void HealthSystem::getHealth(int _entityID)
+{
+	std::cout << "Current Health: " << HealthManager.getComponent(_entityID).mCurrentHealth << std::endl;
+}
 
-//void HealthSystem::takeDamage(std::shared_ptr<Player> damageDoer, std::shared_ptr<Player> damageTaker, int damage)
-//{
-//
-//}
+void HealthSystem::giveHealth(int _entityID, int _health)
+{
+	HealthManager.getComponent(_entityID).mCurrentHealth += _health;
+}
+
+void HealthSystem::takeDamage(int _damageTaker, int _damage)
+{
+	HealthManager.getComponent(_damageTaker).mCurrentHealth -= _damage;
+}

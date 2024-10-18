@@ -8,11 +8,13 @@ class HealthSystem : Systems
 {
 
 public:
-	//HealthSystem(ComponentManager<HealthComponent> HealthManager);
-	void Update() override;
+	ComponentManager<HealthComponent> HealthManager;
+	HealthSystem() = default;
 
-	int GetHealth(int _entityID);
+	void setHealth(int _entityID, int _health, int _maxhealth);
+	void getHealth(int _entityID);
 
-	void takeDamage(int _damageDoer, int _damageTaker, int _damage);
+	void giveHealth(int _entityID, int _health);
+	void takeDamage(int _damageTaker, int _damage);
 };
 

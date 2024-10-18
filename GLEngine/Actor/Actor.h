@@ -3,7 +3,6 @@
 #include "../Meshes/Sphere/Spheres.h"
 
 
-class EntityComponent;
 
 class Player : public Cube
 {
@@ -57,7 +56,5 @@ public:
 
 	glm::vec3& GetItemPos();
 	glm::vec3& GetItemSize();
-
-	std::shared_ptr<EntityComponent> entity = nullptr;
 };
 

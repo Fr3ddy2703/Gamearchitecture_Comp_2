@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Actor.h"
 
-#include "../Components/EntityComponent/EntityComponent.h"
-
 void Player::createPlayer(glm::vec3 size, glm::vec3 pos, glm ::vec3 color)
 {
 	CreateCube(size, pos, color);
@@ -30,11 +28,11 @@ Enemy::Enemy()
 	
 }
 
-void Enemy::assignEntityID(int _id)
-{
-	std::shared_ptr<EntityComponent> entity;
-	entity->EntityId = _id;
-}
+//void Enemy::assignEntityID(int _id)
+//{
+//	std::shared_ptr<EntityComponent> entity;
+//	entity->EntityId = _id;
+//}
 
 void Enemy::createEnemy(glm::vec3 _size, glm::vec3 _pos, glm::vec3 _color)
 {

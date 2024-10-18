@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "initializer.h"
 
-#include "../Components/EntityComponent/EntityComponent.h"
-#include "../Components/HealthComponents/HealthComponent.h"
 #include "../Input/input.h"
 #include "../Shaders/shader.h"
 #include "../Systems/HealthSystem/HealthSystem.h"
@@ -11,27 +9,28 @@ float initializer::DeltaTime = 0.f;
 camera initializer::UseCamera = camera();
 
 /* Systems */
-
+HealthSystem hs;
 
 void initializer::Initialize()
 {
 	window = window::initWindow();
 	UseCamera.initCamera();
 
-	enemy->assignEntityID(1);
-	entityComponentManager.addComponent(1, EntityComponent());
-	std::cout << entityComponentManager.getComponent(1).EntityId << std::endl;
-	entityComponentManager.addComponent(2, EntityComponent());
-	entityComponentManager.addComponent(3, EntityComponent());
-	//healthComponentManager.addComponent(1, HealthComponent(100, 100));
-	//std::cout << healthComponentManager.getComponent(1).mCurrentHealth << std::endl;
+	/* Component manager */
+	hs.HealthManager.addComponent(0); /* player */
+	hs.HealthManager.addComponent(1); /* enemy */
+
+	hs.setHealth(0, 100, 100); /* Player health */
+	hs.setHealth(1, 50, 100); /* Enemy health */
+
+	hs.getHealth(0);
+	hs.getHealth(1);
+
 	Run();
 }
 
 void initializer::Create()
 {
-	
-
 	/* Scene */
 	Floor.CreateCube(glm::vec3(18.f, 0.5f, 9.f), glm::vec3(1.f, 0.f, 9.f),Color::Green);
 
@@ -115,13 +114,20 @@ void initializer::Run()
 		//{
 		//	sphere.DrawSphere();
 		//}
-		player->drawPlayer();
-		enemy->drawEnemy();
-	if (render)
+		if (prender)
+		{
+			player->drawPlayer();
+		}
+
+		if (erender)
+		{
+			enemy->drawEnemy();
+		}
+		
+	if (irender)
 	{
 		item->drawItem();
 	}
-
 	
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -132,20 +138,37 @@ void initializer::Run()
 void initializer::Update(float deltaTime)
 {
 	Collision collision;
+	/* Enemy and player interaction */
 	if(collision.checkBoxBoxCollision(player, enemy))
 	{
+		hs.takeDamage(0, 10);
+		hs.takeDamage(1, 30);
+		if (hs.HealthManager.getComponent(0).mCurrentHealth <= 0 )
+		{
+			prender = false;
+			std::cout << "Player is dead" << "\n";
+		}
+		if (hs.HealthManager.getComponent(1).mCurrentHealth <= 0 )
+		{
+			erender = false;
+			std::cout << "Enemy is dead" << std::endl;
+		}
+		hs.getHealth(0);
+		hs.getHealth(1);
 		collision.bounceBack(enemy, player, 1.f);
 	}
 
 	/* Interaction with the item */
-	if (glfwGetKey(window, GLFW_KEY_E ) && collision.checkPlayerItemCollision(player, item))
+	if (collision.checkPlayerItemCollision(player, item))
 	{
-		entityComponentManager.removeComponent(0);
-		render = false;
+		if (glfwGetKey(window, GLFW_KEY_E ))
+		{
+			irender = false;
+			std::cout << "Item Collected" << "\n";
+		}
 	}
 	collision.enemyAI(enemy, player, 1, deltaTime);
 
-	//player->takeDamage();
 }
 
 initializer::~initializer()

@@ -10,9 +10,10 @@ private:
 
 public:
 
-void addComponent(int entityID, const T& component) 
+void addComponent(int entityID) 
 {
-	components[entityID] = component;
+	components[entityID] = T();
+	//std::cout << "Component Added" << std::endl;
 }
 
 
@@ -27,7 +28,7 @@ void removeComponent(int entityID)
 	std::cout << "Component Removed" << std::endl;
 }
 
-T getComponent(int entityID)
+T& getComponent(int entityID)
 {
 	return components[entityID];
 }

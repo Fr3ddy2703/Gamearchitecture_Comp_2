@@ -107,6 +107,7 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\GLEngine\Libraries\includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,6 +126,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +141,6 @@
     <ClCompile Include="Collision\Collision.cpp" />
     <ClCompile Include="Components\ComponentManager.cpp" />
     <ClCompile Include="Components\Components.cpp" />
-    <ClCompile Include="Components\EntityComponent\EntityComponent.cpp" />
     <ClCompile Include="Components\HealthComponents\HealthComponent.cpp" />
     <ClCompile Include="Components\PositionComponents\PositionComponent.cpp" />
     <ClCompile Include="Components\VelocityComponents\VelocityComponent.cpp" />
@@ -174,7 +175,6 @@
     <ClInclude Include="Collision\Collision.h" />
     <ClInclude Include="Components\ComponentManager.h" />
     <ClInclude Include="Components\Components.h" />
-    <ClInclude Include="Components\EntityComponent\EntityComponent.h" />
     <ClInclude Include="Components\HealthComponents\HealthComponent.h" />
     <ClInclude Include="Components\PositionComponents\PositionComponent.h" />
     <ClInclude Include="Components\VelocityComponents\VelocityComponent.h" />

@@ -3,9 +3,11 @@
 #include "../Meshes/Sphere/Spheres.h"
 #include "../Meshes/Cubes/Cubes.h"
 #include "../Actor/Actor.h"
-#include "../Components/EntityComponent/EntityComponent.h"
+#include "../Components/HealthComponents/HealthComponent.h"
 #include "../Components/ComponentManager.h"
 
+class HealthSystem;
+class HealthComponent;
 class ElementBuffer;
 class VertexBuffer;
 struct GLFWwindow;
@@ -35,8 +37,6 @@ public:
 
 	virtual  ~initializer();
 
-	/* Components */
-	ComponentManager<EntityComponent> entityComponentManager;
 
 private:
 	/* private Shared Pointers */
@@ -47,7 +47,8 @@ private:
 	std::shared_ptr<Item> item;
 
 	/* private variables */
-	bool render = true;
-	bool start = false;
+	bool irender = true;
+	bool prender = true;
+	bool erender = true;
 };
 
